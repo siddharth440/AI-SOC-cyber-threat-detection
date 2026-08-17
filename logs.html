@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Security Log Analyzer</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+  <div id="logs-view-marker" style="display:none;"></div>
+
+  <div id="app">
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+      <div id="header-container"></div>
+
+      <main class="page-container">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h1>📋 Security Log Analyzer</h1>
+            <p>Unified audit logs from authentication, firewall, DNS, web server, and application layers</p>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="filter-group">
+            <input type="text" id="logs-search" placeholder="Search logs by IP, event..." style="min-width:260px;" oninput="LogsController.renderLogsTable()">
+            <select id="logs-type-filter" onchange="LogsController.renderLogsTable()">
+              <option value="ALL">All Log Categories</option>
+              <option value="Authentication">Authentication</option>
+              <option value="Firewall">Firewall</option>
+              <option value="DNS">DNS</option>
+              <option value="Network">Network</option>
+              <option value="Endpoint">Endpoint</option>
+              <option value="Web Server">Web Server</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Category</th>
+                <th>Event Action</th>
+                <th>Source IP</th>
+                <th>User Account</th>
+                <th>Severity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="logs-table-body"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Log Analysis Result Modal -->
+  <div class="modal-overlay" id="log-analysis-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">⚡ On-The-Fly AI Detection Engine Analysis</div>
+        <span class="modal-close" onclick="LogsController.closeModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="log-analysis-modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="LogsController.closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/detection-engine.js"></script>
+  <script src="./js/notifications.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/logs.js"></script>
+</body>
+</html>

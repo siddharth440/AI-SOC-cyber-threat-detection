@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Cyber Threat Detection Platform</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body style="display:flex; align-items:center; justify-content:center; min-height:100vh; background: radial-gradient(circle at 50% 20%, #0f172a 0%, #0b0f17 100%);">
+
+  <div class="glass-panel" style="width:100%; max-width:440px; padding:32px; margin:20px; box-shadow: var(--shadow-lg), var(--shadow-glow-cyan);">
+    <div style="text-align:center; margin-bottom:24px;">
+      <div class="logo-icon" style="width:54px; height:54px; font-size:1.8rem; margin:0 auto 12px auto;">SX</div>
+      <h1 style="font-size:1.6rem; font-weight:800; color:var(--text-main);">Sentinel<span style="color:var(--accent-cyan);">X</span></h1>
+      <p style="color:var(--text-muted); font-size:0.88rem; margin-top:4px;">Enterprise Security Operations Center (SOC)</p>
+    </div>
+
+    <form id="login-form" onsubmit="handleLoginSubmit(event)" style="display:flex; flex-direction:column; gap:16px;">
+      <div id="login-error-msg" style="display:none; padding:10px; background:var(--severity-critical-bg); border:1px solid rgba(239,68,68,0.3); color:var(--severity-critical); border-radius:var(--border-radius-sm); font-size:0.85rem; text-align:center;"></div>
+
+      <div>
+        <label style="display:block; font-size:0.8rem; text-transform:uppercase; color:var(--text-muted); font-weight:600; margin-bottom:6px;">SOC Email Address</label>
+        <input type="email" id="login-email" required placeholder="soc.admin@sentinelx.local" style="width:100%;">
+      </div>
+
+      <div>
+        <label style="display:block; font-size:0.8rem; text-transform:uppercase; color:var(--text-muted); font-weight:600; margin-bottom:6px;">Password</label>
+        <input type="password" id="login-password" required placeholder="••••••••••••" style="width:100%;">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; padding:12px; margin-top:8px; font-size:0.95rem;">
+        🔐 Access SOC Dashboard
+      </button>
+    </form>
+
+    <!-- Demo Credential Autofill Helper -->
+    <div style="margin-top:20px; padding:12px; background:rgba(6,182,212,0.06); border:1px solid var(--border-color-glow); border-radius:var(--border-radius-sm); font-size:0.8rem; color:var(--text-muted);">
+      <div style="font-weight:700; color:var(--accent-cyan); margin-bottom:4px;">🔑 Demo Analyst Credentials:</div>
+      <div>Email: <code style="color:var(--text-main);">soc.admin@sentinelx.local</code></div>
+      <div>Password: <code style="color:var(--text-main);">SentinelX@123</code></div>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="autofillDemoCredentials()" style="width:100%; margin-top:8px;">
+        ⚡ Click to Autofill Credentials
+      </button>
+    </div>
+
+    <div style="margin-top:16px; font-size:0.75rem; color:var(--text-dim); text-align:center; line-height:1.4;">
+      ⚠️ Note: Authentication is client-side and intended for demonstration purposes only.
+    </div>
+  </div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/auth.js"></script>
+
+  <script>
+    function autofillDemoCredentials() {
+      document.getElementById('login-email').value = 'soc.admin@sentinelx.local';
+      document.getElementById('login-password').value = 'SentinelX@123';
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+      const res = AuthEngine.login(email, pass);
+
+      const errDiv = document.getElementById('login-error-msg');
+      if (res.success) {
+        window.location.href = './dashboard.html';
+      } else {
+        errDiv.textContent = res.error;
+        errDiv.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

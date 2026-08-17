@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Endpoint Fleet Monitoring</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+  <div id="endpoints-view-marker" style="display:none;"></div>
+
+  <div id="app">
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+      <div id="header-container"></div>
+
+      <main class="page-container">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h1>💻 Endpoint Fleet Monitoring & Containment</h1>
+            <p>Workstation and server health telemetry, process metrics, and active network isolation</p>
+          </div>
+        </div>
+
+        <div id="endpoints-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px;"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Endpoint Details & Isolation Modal -->
+  <div class="modal-overlay" id="endpoint-details-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">💻 Endpoint Telemetry & Containment</div>
+        <span class="modal-close" onclick="EndpointsController.closeModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="endpoint-modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="EndpointsController.closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/notifications.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/endpoints.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Threat Intelligence</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+  <div id="threats-view-marker" style="display:none;"></div>
+
+  <div id="app">
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+      <div id="header-container"></div>
+
+      <main class="page-container">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h1>⚡ Threat Intelligence & IOC Database</h1>
+            <p>Malicious IP addresses, domain names, file hashes, and URL indicators</p>
+          </div>
+          <div class="page-header-actions">
+            <button class="btn btn-primary" onclick="ThreatIntelController.openAddIOCModal()">➕ Add IOC Indicator</button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="filter-group">
+            <input type="text" id="threat-search" placeholder="Search IOC, threat name..." style="min-width:240px;" oninput="ThreatIntelController.renderThreatsTable()">
+            <select id="threat-type-filter" onchange="ThreatIntelController.renderThreatsTable()">
+              <option value="ALL">All IOC Types</option>
+              <option value="IP">IP Address</option>
+              <option value="DOMAIN">Domain</option>
+              <option value="HASH">File Hash</option>
+              <option value="URL">URL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>IOC Value</th>
+                <th>Type</th>
+                <th>Threat Classification</th>
+                <th>Confidence</th>
+                <th>First Seen</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="threats-table-body"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add IOC Modal -->
+  <div class="modal-overlay" id="add-ioc-modal">
+    <div class="modal-content" style="max-width:480px;">
+      <div class="modal-header">
+        <div class="modal-title">➕ Add Threat Intelligence Indicator</div>
+        <span class="modal-close" onclick="ThreatIntelController.closeAddIOCModal()">&times;</span>
+      </div>
+      <form onsubmit="ThreatIntelController.saveNewIOC(event)">
+        <div class="modal-body">
+          <div>
+            <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">IOC Value</label>
+            <input type="text" id="ioc-value-input" required placeholder="e.g. 198.51.100.45 or maldomain.ru" style="width:100%;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Indicator Type</label>
+            <select id="ioc-type-input" style="width:100%;">
+              <option value="IP">IP Address</option>
+              <option value="DOMAIN">Domain</option>
+              <option value="HASH">File Hash</option>
+              <option value="URL">URL</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Threat Classification Name</label>
+            <input type="text" id="ioc-name-input" required placeholder="e.g. APT29 C2 Server" style="width:100%;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="ThreatIntelController.closeAddIOCModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save IOC Indicator</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/notifications.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/threats.js"></script>
+</body>
+</html>

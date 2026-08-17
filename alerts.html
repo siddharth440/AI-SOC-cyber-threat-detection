@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Security Alerts Management</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+  <div id="alerts-view-marker" style="display:none;"></div>
+
+  <div id="app">
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+      <div id="header-container"></div>
+
+      <main class="page-container">
+        <div class="page-header">
+          <div class="page-header-title">
+            <h1>🚨 Security Alerts Management</h1>
+            <p>Real-time threat detection telemetry and explainable alert triage</p>
+          </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="table-toolbar">
+          <div class="filter-group">
+            <input type="text" id="alerts-search" placeholder="Search by Alert ID, IP, Event..." style="min-width:260px;">
+            <select id="severity-filter">
+              <option value="ALL">All Severities</option>
+              <option value="CRITICAL">CRITICAL</option>
+              <option value="HIGH">HIGH</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="LOW">LOW</option>
+            </select>
+            <select id="status-filter">
+              <option value="ALL">All Statuses</option>
+              <option value="NEW">NEW</option>
+              <option value="ACKNOWLEDGED">ACKNOWLEDGED</option>
+              <option value="ESCALATED">ESCALATED</option>
+              <option value="RESOLVED">RESOLVED</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Alerts Data Table -->
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Alert ID</th>
+                <th>Timestamp</th>
+                <th>Source IP</th>
+                <th>Event Type</th>
+                <th>Severity</th>
+                <th>Risk Score</th>
+                <th>Confidence</th>
+                <th>Status</th>
+                <th>Endpoint</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="alerts-table-body"></tbody>
+          </table>
+
+          <div class="pagination">
+            <span id="pagination-info">Showing alerts</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Alert Details Modal -->
+  <div class="modal-overlay" id="alert-details-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">🚨 Threat Alert Details & AI Analysis</div>
+        <span class="modal-close" onclick="AlertsController.closeDetailsModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="alert-modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="AlertsController.closeDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/detection-engine.js"></script>
+  <script src="./js/correlation-engine.js"></script>
+  <script src="./js/notifications.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/alerts.js"></script>
+</body>
+</html>
