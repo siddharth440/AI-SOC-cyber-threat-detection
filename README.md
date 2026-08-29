@@ -6,7 +6,7 @@
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-22272E?style=for-the-badge&logo=github&logoColor=white)
 
 **SentinelX** is an enterprise-grade, resume-level Security Operations Center (SOC) dashboard and AI-assisted cyber threat detection platform built with zero external framework dependencies using **HTML5, CSS3, and Vanilla JavaScript**. Designed for GitHub Pages compatibility, SentinelX delivers real-time telemetry simulation, explainable AI risk scoring, multi-event correlation, endpoint isolation workflows, SVG cyber attack mapping, and MITRE ATT&CK tactical mapping.
-
+   
 ---
 
 ## 📌 Executive Overview
