@@ -8,7 +8,7 @@
 **SentinelX** is an enterprise-grade, resume-level Security Operations Center (SOC) dashboard and AI-assisted cyber threat detection platform built with zero external framework dependencies using **HTML5, CSS3, and Vanilla JavaScript**. Designed for GitHub Pages compatibility, SentinelX delivers real-time telemetry simulation, explainable AI risk scoring, multi-event correlation, endpoint isolation workflows, SVG cyber attack mapping, and MITRE ATT&CK tactical mapping.
 ---
 
-## 📌 Executive Overview
+## 📌 Executive Overview   
 
 ### Problem Statement
 Modern enterprise environments generate millions of security events daily across web servers, firewalls, workstations, and identity providers. Standard student projects often rely on static CRUD interfaces that fail to demonstrate real-time event processing, multi-stage attack correlation, and explainable threat scoring.
