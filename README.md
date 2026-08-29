@@ -10,6 +10,7 @@
 
 ## 📌 Executive Overview   
 
+
 ### Problem Statement
 Modern enterprise environments generate millions of security events daily across web servers, firewalls, workstations, and identity providers. Standard student projects often rely on static CRUD interfaces that fail to demonstrate real-time event processing, multi-stage attack correlation, and explainable threat scoring.
 
